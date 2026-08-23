@@ -844,6 +844,12 @@
 </div><!-- /#main -->
 
 <script>
+function scrollToSection(id) {
+  const target = document.getElementById(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 /* ══ BILINGUAL LANGUAGE SWITCHER (TAMIL / ENGLISH) ══ */
 function switchLang(lang) {
   const ta = document.getElementById('inv-ta');
