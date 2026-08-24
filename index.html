@@ -460,46 +460,115 @@
     text-transform: uppercase; letter-spacing: 2.5px; font-size: 10px; color: var(--maroon-deep); font-weight: 700;
   }
 
-  /* ── 5. SINGLE BOX 2x2 GRID FAMILY SECTION (REQUESTED BY USER) ── */
+  /* ── 5. FAMILY BLESSINGS: WIDE GRANDPARENTS BOX + TWO LOWER BOXES ── */
   .family-single-card {
-    max-width: 860px; margin: 0 auto;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
-  .family-2x2-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+  .family-layout {
     margin-top: 28px;
-    position: relative;
+    width: 100%;
   }
 
-  .family-cell {
-    background: rgba(255, 255, 255, 0.75);
-    border: 1.5px solid rgba(201, 146, 58, 0.4);
-    border-radius: 14px;
+  /* Row 1: one single wide rectangle for both grandparents couples. */
+  .grandparents-box {
+    width: 100%;
+    border: 1.5px solid rgba(201, 146, 58, 0.48);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.80);
+    overflow: hidden;
+    box-shadow: inset 0 0 18px rgba(201, 146, 58, 0.035);
+  }
+
+  .grandparents-heading {
+    text-align: center;
+    padding: 20px 18px 14px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(21px, 3vw, 28px);
+    line-height: 1.25;
+    letter-spacing: 0.6px;
+    color: var(--maroon-main);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(201, 146, 58, 0.38);
+  }
+
+  .grandparents-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grandparent-column {
+    padding: 26px 20px;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .grandparent-column:first-child {
+    border-right: 1px solid rgba(201, 146, 58, 0.48);
+  }
+
+  /* Names stand out; family role uses the theme gold. */
+  .family-member-name {
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--maroon-main);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  .family-member-role {
+    margin-top: 5px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--gold-dark);
+    font-weight: 700;
+  }
+
+  /* Row 2: two genuinely separate boxes. */
+  .family-lower-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .family-lower-box {
+    border: 1.5px solid rgba(201, 146, 58, 0.45);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.80);
     padding: 24px 18px;
     text-align: center;
+    min-width: 0;
+    box-shadow: inset 0 0 18px rgba(201, 146, 58, 0.03);
     transition: transform 0.35s ease, border-color 0.35s ease;
   }
-  .family-cell:hover {
+
+  .family-lower-box:hover {
     transform: translateY(-3px);
     border-color: var(--gold-base);
   }
 
-  .family-cell-role {
-    font: 600 20px/1.3 "Playfair Display", serif;
-    color: var(--maroon-deep);
-    margin-bottom: 8px;
+  .family-lower-intro {
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 9px;
   }
 
-  .family-cell-divider {
-    width: 70%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,146,58,0.5), transparent);
-    margin: 0 auto 14px;
+  .family-lower-box .family-member-name {
+    font-size: 21px;
   }
 
-  .member-name { font-size: 17px; color: var(--maroon-deep); font-weight: 600; line-height: 1.45; }
-  .member-amp { font-family: 'Cinzel', serif; font-size: 13.5px; color: var(--gold-base); margin: 2px 0; }
+  .family-lower-box .family-member-role {
+    font-size: 16px;
+  }
 
   /* ── 6. FINAL CLOSING SECTION ── */
   .final-card { max-width: 780px; margin: 0 auto; padding: 35px 22px; }
@@ -513,6 +582,13 @@
     letter-spacing: 3.5px; color: var(--gold-dark); text-transform: uppercase; margin-top: 12px;
   }
 
+  /* Prevent any family-grid overflow/collision on narrow devices. */
+  .family-single-card,
+  .family-2x2-grid,
+  .family-cell {
+    max-width: 100%;
+  }
+
   /* Responsive Adjustments */
   @media(max-width: 600px) {
     .nav { gap: 8px; padding: 12px 4px; }
@@ -523,7 +599,49 @@
     .unit-box b { font-size: 24px; }
     .unit-box span { font-size: 8.5px; letter-spacing: 1px; }
     .event-details-col { padding: 26px 14px; }
-    .family-2x2-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    .family-single-card {
+      padding: 24px 10px !important;
+      margin: 0 2px;
+    }
+    .family-layout {
+      margin-top: 20px;
+    }
+    .grandparents-heading {
+      padding: 16px 8px 12px;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+    .grandparent-column {
+      padding: 18px 7px;
+    }
+    .family-member-name,
+    .family-lower-box .family-member-name {
+      font-size: 14px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+    .family-member-role,
+    .family-lower-box .family-member-role {
+      font-size: 13px;
+      margin-top: 3px;
+    }
+    .family-lower-row {
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .family-lower-box {
+      padding: 18px 8px;
+      border-radius: 13px;
+    }
+    .family-lower-intro {
+      font-size: 8px;
+      letter-spacing: 1.05px;
+      margin-bottom: 7px;
+    }
+
+    /* Keep the family section as a clean 2x2 layout on mobile. */
+
   }
 </style>
 </head>
@@ -703,7 +821,7 @@
 
         <!-- Top gold ornament -->
         <div style="font-size:28px; color:var(--gold-base); letter-spacing:10px; margin-bottom:6px;">✦ ❧ ✦</div>
-        <div class="eyebrow" style="margin-bottom:4px;">Sacred Celebration</div>
+        <div class="eyebrow" style="margin-bottom:4px;">The Celebration</div>
 
         <!-- Decorative rule -->
         <svg viewBox="0 0 300 16" style="width:200px; margin:8px auto 18px; display:block;">
@@ -721,13 +839,13 @@
         <div style="display:flex; flex-direction:column; gap:20px; text-align:center;">
 
           <div style="padding:16px 20px; background:rgba(201,146,58,0.07); border:1px solid rgba(201,146,58,0.3); border-radius:12px;">
-            <div class="detail-label" style="font-size:10px; letter-spacing:3px; margin-bottom:5px;">📅 AUSPICIOUS DATE</div>
+            <div class="detail-label" style="font-size:10px; letter-spacing:3px; margin-bottom:5px;">📅 DATE &amp; TIME</div>
             <div class="detail-value" style="font-size:20px;">Monday, 31 August 2026</div>
             <div class="detail-sub" style="font-size:14px; margin-top:3px;">Aavani 15 · திங்கட்கிழமை</div>
           </div>
 
           <div style="padding:16px 20px; background:rgba(201,146,58,0.07); border:1px solid rgba(201,146,58,0.3); border-radius:12px;">
-            <div class="detail-label" style="font-size:10px; letter-spacing:3px; margin-bottom:5px;">🕛 MUHURTHAM TIME</div>
+            <div class="detail-label" style="font-size:10px; letter-spacing:3px; margin-bottom:5px;">🕛 CEREMONY TIME</div>
             <div class="detail-value" style="font-size:20px;">12:00 PM – 2:00 PM</div>
             <div class="detail-sub" style="font-size:14px; margin-top:3px;">நண்பகல் 12:00 முதல் 2:00 வரை</div>
           </div>
@@ -761,7 +879,7 @@
   <section id="countdown">
     <div class="container">
       <div class="content-overlay-card">
-        <div class="eyebrow">✦ Royal Countdown ✦</div>
+        <div class="eyebrow">✦ Counting Down to Lakshana’s Special Day ✦</div>
         <h2 class="section-title">Counting Down To The Ceremony</h2>
 
         <div class="royal-timer-wrap">
@@ -796,66 +914,43 @@
         <div class="eyebrow">With Heartfelt Gratitude</div>
         <h2 class="section-title">Blessings From Our Family</h2>
 
-        <div class="family-2x2-grid">
-          <!-- Row 1 Cell 1: Grandparents 1 -->
-          <div class="family-cell">
-            <div class="family-cell-role">Grandparents</div>
-            <div class="family-cell-divider"></div>
-            <div class="member-name">Gopalsamy</div>
-            <div class="member-amp">&amp;</div>
-            <div class="member-name">Veerammal</div>
+        <div class="family-layout">
+
+          <!-- ROW 1: ONE WIDE GRANDPARENTS BOX -->
+          <div class="grandparents-box">
+            <div class="grandparents-heading">
+              With the Blessings of Our Elders
+            </div>
+
+            <div class="grandparents-columns">
+              <div class="grandparent-column">
+                <div class="family-member-name">Gopalsamy &amp; Veerammal</div>
+                <div class="family-member-role">Grandparents</div>
+              </div>
+
+              <div class="grandparent-column">
+                <div class="family-member-name">Seenivasan &amp; Santhi</div>
+                <div class="family-member-role">Grandparents</div>
+              </div>
+            </div>
           </div>
 
-          <!-- Row 1 Cell 2: Grandparents 2 -->
-          <div class="family-cell">
-            <div class="family-cell-role">Grandparents</div>
-            <div class="family-cell-divider"></div>
-            <div class="member-name">Seenivasan</div>
-            <div class="member-amp">&amp;</div>
-            <div class="member-name">Santhi</div>
+          <!-- ROW 2: TWO SEPARATE BOXES -->
+          <div class="family-lower-row">
+            <div class="family-lower-box">
+              <div class="family-lower-intro">With Love</div>
+              <div class="family-member-name">Aravind &amp; Arthi</div>
+              <div class="family-member-role">Parents</div>
+            </div>
+
+            <div class="family-lower-box">
+              <div class="family-lower-intro">With Sibling Love</div>
+              <div class="family-member-name">Kanishka</div>
+              <div class="family-member-role">Beloved Sister</div>
+            </div>
           </div>
 
-          <!-- Row 2 Cell 1: Parents -->
-          <div class="family-cell">
-            <div class="family-cell-role">Parents</div>
-            <div class="family-cell-divider"></div>
-            <div class="member-name">Aravind</div>
-            <div class="member-amp">&amp;</div>
-            <div class="member-name">Arthi</div>
-          </div>
-
-          <!-- Row 2 Cell 2: Beloved Sister -->
-          <div class="family-cell">
-            <div class="family-cell-role">Beloved Sister</div>
-            <div class="family-cell-divider"></div>
-            <div class="member-name">Kanishka</div>
-          </div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── 6. FINAL CLOSING SECTION ── -->
-  <section>
-    <div class="container">
-      <div class="final-card content-overlay-card">
-        <div class="eyebrow">With Love &amp; Blessings</div>
-        <h2 class="section-title">We Await Your Presence</h2>
-        
-        <p class="lead-text" style="max-width: 700px; margin: 0 auto;">
-          With hearts full of gratitude, we invite you to bless Selvi Lakshana as she steps gracefully into this new chapter of her life.
-        </p>
-
-        <div class="final-signature">Lakshana</div>
-        
-        <svg class="svg-rule" viewBox="0 0 200 20">
-          <line x1="0" y1="10" x2="200" y2="10"/>
-          <circle cx="100" cy="10" r="4" fill="var(--gold-base)"/>
-        </svg>
-
-        <div class="final-venue-tag">31 AUGUST 2026 · BRR MAHAL · GV RESIDENCY</div>
-      </div>
     </div>
   </section>
 
